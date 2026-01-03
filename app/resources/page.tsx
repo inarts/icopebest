@@ -35,12 +35,15 @@ export default function ResourcesPage() {
             <p className="text-foreground-muted text-sm mb-8 max-w-xs mx-auto">
               A summary of the project goals and funding details.
             </p>
-            <button
-              disabled
-              className="px-6 py-2.5 bg-background-muted text-foreground-muted/50 text-xs font-semibold uppercase tracking-eyebrow rounded-full cursor-not-allowed"
-            >
-              Download PDF
-            </button>
+            <a
+  href="/documents/deliverables/icopebest_deliverables_list.pdf"
+  target="_blank"
+  rel="noreferrer"
+  className="px-6 py-2.5 bg-background-muted text-foreground text-xs font-semibold uppercase tracking-eyebrow rounded-full hover:bg-neutral-200"
+>
+  Download PDF
+</a>
+
           </Card>
 
           {/* Card 2 */}
@@ -66,12 +69,15 @@ export default function ResourcesPage() {
             <p className="text-foreground-muted text-sm mb-8 max-w-xs mx-auto">
               Overview slides presented at the kickoff meeting.
             </p>
-            <button
-              disabled
-              className="px-6 py-2.5 bg-background-muted text-foreground-muted/50 text-xs font-semibold uppercase tracking-eyebrow rounded-full cursor-not-allowed"
-            >
-              Download PDF
-            </button>
+            <a
+  href="/documents/slides/icopebest_presentation_slides.pdf"
+  target="_blank"
+  rel="noreferrer"
+  className="px-6 py-2.5 bg-background-muted text-foreground text-xs font-semibold uppercase tracking-eyebrow rounded-full hover:bg-neutral-200"
+>
+  Download PDF
+</a>
+
           </Card>
         </div>
       </div>

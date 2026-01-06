@@ -1,6 +1,10 @@
+// app/project/page.tsx
 import PageHeader from "@/components/PageHeader";
 import Card from "@/components/Card";
 import { profileLinks, shortFundingText } from "@/lib/content";
+
+const btn =
+  "inline-flex items-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-xs font-medium hover:bg-neutral-50 transition";
 
 export default function ProjectPage() {
   return (
@@ -82,9 +86,7 @@ export default function ProjectPage() {
 
         <Card className="p-10 space-y-4">
           <h2 className="text-lg font-serif font-bold text-foreground">Funding</h2>
-          <p className="text-sm text-foreground-muted leading-relaxed">
-            {shortFundingText}
-          </p>
+          <p className="text-sm text-foreground-muted leading-relaxed">{shortFundingText}</p>
           <p className="text-xs text-foreground-muted leading-relaxed">
             (The full legal funding statement is provided in the site footer.)
           </p>
@@ -97,12 +99,7 @@ export default function ProjectPage() {
           <p className="text-sm text-foreground-muted leading-relaxed">
             Source code and version history for the I.COPE.BEST public website.
           </p>
-          <a
-            href={profileLinks.github}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center rounded-full border border-neutral-300 px-4 py-2 text-xs font-medium hover:bg-neutral-50"
-          >
+          <a href={profileLinks.github} target="_blank" rel="noreferrer" className={btn}>
             View on GitHub ↗
           </a>
         </Card>

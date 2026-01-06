@@ -12,13 +12,32 @@ export const siteConfig = {
   ],
 };
 
-// FULL legal sentence (keep this in the footer)
-export const fundingText =
-  "This project is funded by the European Union’s NextGenerationEU plan under the Italian Ministry for Universities and Research (MUR) ‘Young Researchers – Seal of Excellence’ grant (Project SOE_0000193, CUP H73C22001440001).";
+/**
+ * RRF / NextGenerationEU visibility (keep the EU statement as its own fixed line).
+ * NOTE: The EU statement must remain exactly:
+ * “Funded by the European Union – NextGenerationEU”.
+ */
+export const euFundingStatement = "Funded by the European Union – NextGenerationEU";
 
-// Short version (use this on the Project page Funding section)
+/**
+ * A concise disclaimer line (web-friendly).
+ * If you prefer the longer standard disclaimer, replace this with the official wording
+ * from the Commission guidance you are following.
+ */
+export const euDisclaimer =
+  "Funded by the European Union – NextGenerationEU. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Commission. Neither the European Union nor the European Commission can be held responsible for them.";
+
+/**
+ * Additional acknowledgement (national/institutional), kept separate from the fixed EU statement.
+ */
+export const fundingText =
+  "Supported by the Italian Ministry of Universities and Research (MUR) through the ‘Young Researchers – Seal of Excellence’ grant (Project SOE_0000193; CUP H73C22001440001).";
+
+/**
+ * Short version for compact placements (e.g., Project page).
+ */
 export const shortFundingText =
-  "Funded by the European Union NextGenerationEU and the Italian Ministry for Universities and Research (MUR) “Young Researchers – Seal of Excellence” (SOE_0000193; CUP H73C22001440001).";
+  "Funded by the European Union – NextGenerationEU; supported by the Italian Ministry of Universities and Research (MUR) via ‘Young Researchers – Seal of Excellence’ (SOE_0000193; CUP H73C22001440001).";
 
 // Your links
 export const profileLinks = {
@@ -54,10 +73,10 @@ export const outputs = [
   {
     id: "final-report",
     title: "Final Report (placeholder)",
-    authors: "I.COPE.BEST Project Team",
+    authors: "I.COPE.BEST",
     badge: "Project report",
     abstract:
-      "This placeholder will be replaced by the final project report. The report will summarize the research motivation, methods, key empirical findings, and dissemination activities, and will document outputs in line with project reporting requirements.",
+      "This placeholder will be replaced by the final project report. The report will summarize the research motivation, methods, key empirical findings, and dissemination activities.",
     pdf: "/documents/reports/icopebest_final_report.pdf",
   },
 ];

@@ -1,3 +1,4 @@
+// app/outputs/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -44,9 +45,7 @@ export default function OutputsPage() {
                         {paper.title}
                       </h3>
 
-                      <p className="text-foreground-muted text-sm">
-                        {paper.authors}
-                      </p>
+                      <p className="text-foreground-muted text-sm">{paper.authors}</p>
 
                       <div className="flex flex-wrap items-center gap-3 pt-2">
                         <Badge>{paper.badge}</Badge>
@@ -77,7 +76,6 @@ export default function OutputsPage() {
                     <div className="md:text-right shrink-0">
                       {paper.pdf ? (
                         <div className="flex flex-wrap md:justify-end gap-2">
-                          {/* VIEW (open in new tab) */}
                           <a
                             href={paper.pdf}
                             target="_blank"
@@ -87,7 +85,6 @@ export default function OutputsPage() {
                             View PDF
                           </a>
 
-                          {/* DOWNLOAD (force download) */}
                           <a
                             href={paper.pdf}
                             download

@@ -1,85 +1,84 @@
 import PageHeader from "@/components/PageHeader";
 import Card from "@/components/Card";
+import { profileLinks } from "@/lib/content";
 
 export default function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="INSTITUTIONAL CHANNELS"
+        eyebrow="CONTACT"
         title="Contact"
-        subtitle="Principal investigator and profiles"
+        subtitle="Academic profile links and workshop-related inquiries"
       />
 
-      <div className="max-w-4xl mx-auto px-6 py-24">
-        <Card className="p-10 md:p-16 flex flex-col md:flex-row gap-12">
-          {/* Main Info */}
-          <div className="flex-1 space-y-8">
-            <div>
-              <h2 className="text-3xl font-serif font-bold text-foreground tracking-tight">
-                Inga Jonaitytė
-              </h2>
-              <p className="text-foreground-muted uppercase tracking-eyebrow text-[10px] font-bold mt-2">
-                Principal Investigator
-              </p>
-            </div>
-
-            <div className="text-foreground-muted leading-relaxed text-sm space-y-1">
-              <p className="font-semibold text-foreground">
-                Ca’ Foscari University of Venice
-              </p>
-              <p>Venice School of Management (VSM)</p>
-              <p>San Giobbe, Cannaregio 873</p>
-              <p>30121 Venice, Italy</p>
-            </div>
-
-            <div className="pt-2">
-              <a
-                href="mailto:Inga.Jonaityte@unive.it"
-                className="text-navy-900 font-medium text-sm border-b border-navy-900/20 hover:border-navy-900 transition-colors pb-0.5"
-              >
-                Inga.Jonaityte@unive.it
-              </a>
-            </div>
-          </div>
-
-          {/* Links Column */}
-          <div className="md:w-64 space-y-8 border-t md:border-t-0 md:border-l border-border pt-8 md:pt-0 md:pl-12">
-            <h3 className="text-[10px] font-bold uppercase tracking-eyebrow text-foreground-muted">
-              Academic Profiles
+      <div className="max-w-5xl mx-auto px-6 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card className="p-10">
+            <h3 className="text-lg font-serif font-bold text-foreground mb-3">
+              Institutional profile
             </h3>
+            <p className="text-sm text-foreground-muted leading-relaxed mb-6">
+              Ca’ Foscari University of Venice — Venice School of Management.
+            </p>
+            <a
+              href={profileLinks.unive}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center rounded-full border border-neutral-300 px-4 py-2 text-xs font-medium hover:bg-neutral-50"
+            >
+              View profile ↗
+            </a>
+          </Card>
 
-            <div className="space-y-4 flex flex-col">
+          <Card className="p-10">
+            <h3 className="text-lg font-serif font-bold text-foreground mb-3">
+              Research identifiers
+            </h3>
+            <p className="text-sm text-foreground-muted leading-relaxed mb-6">
+              ORCID is the preferred identifier for publications and research outputs.
+            </p>
+            <a
+              href={profileLinks.orcid}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center rounded-full border border-neutral-300 px-4 py-2 text-xs font-medium hover:bg-neutral-50"
+            >
+              ORCID 0000-0001-6778-4274 ↗
+            </a>
+          </Card>
+
+          <Card className="p-10 md:col-span-2">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div>
+                <h3 className="text-lg font-serif font-bold text-foreground mb-3">
+                  Professional contact
+                </h3>
+                <p className="text-sm text-foreground-muted leading-relaxed">
+                  For workshop participation, dissemination, or collaboration inquiries, LinkedIn is a convenient channel.
+                </p>
+              </div>
+
               <a
-                href="https://orcid.org/0000-0001-6778-4274"
+                href={profileLinks.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium flex items-center gap-2"
+                className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-4 py-2 text-xs font-medium hover:bg-neutral-50"
+                aria-label="LinkedIn profile"
               >
-                ORCID Registry <span className="text-xs opacity-50">↗</span>
+                {/* Minimal LinkedIn icon */}
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H7.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM6.814 20.452H3.861V9h2.953v11.452z" />
+                </svg>
+                LinkedIn ↗
               </a>
-
-              <a
-                href="https://www.unive.it/data/people/13910982"
-                target="_blank"
-                rel="noreferrer"
-                className="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium flex items-center gap-2"
-              >
-                Institutional Profile <span className="text-xs opacity-50">↗</span>
-              </a>
-
-              {/* Optional: add LinkedIn later (only if you want it public)
-              <a
-                href="https://www.linkedin.com/in/your-handle"
-                target="_blank"
-                rel="noreferrer"
-                className="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium flex items-center gap-2"
-              >
-                LinkedIn <span className="text-xs opacity-50">↗</span>
-              </a>
-              */}
             </div>
-          </div>
-        </Card>
+          </Card>
+        </div>
       </div>
     </>
   );

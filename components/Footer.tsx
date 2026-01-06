@@ -67,15 +67,15 @@ export default function Footer() {
             <span>CUP H73C22001440001</span>
           </div>
 
-          {/* Optional placeholders: keep or remove */}
-          <div className="flex gap-6">
+          {/* Optional: hide these until you have real pages */}
+          {/* <div className="flex gap-6">
             <span className="hover:text-[#f5f5f7] cursor-not-allowed transition-colors">
               Privacy Policy
             </span>
             <span className="hover:text-[#f5f5f7] cursor-not-allowed transition-colors">
               Accessibility
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

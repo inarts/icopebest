@@ -20,7 +20,7 @@ export default function Home() {
             </span>
           </div>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.1] mb-8 max-w-4xl tracking-tight">
-            Financial Technology Inclusion in the COVID-19 Pandemic ERA
+            Financial Technology Inclusion in the COVID-19 Pandemic Era 
           </h1>
           <p className="text-xl md:text-2xl text-gray-400 font-normal mb-12 max-w-2xl leading-relaxed tracking-wide">
             A Behavioral Economics perspective on digital finance adoption and

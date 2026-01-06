@@ -7,12 +7,30 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# Dependencies
+node_modules/
+
+# Build output
+.next/
+out/
 dist
 dist-ssr
-*.local
 
-# Editor directories and files
+# Vercel
+.vercel/
+
+# Env files
+.env*
+
+# Tooling caches (optional but recommended)
+.turbo/
+coverage/
+*.tsbuildinfo
+.pnp.*
+.pnp.cjs
+
+# Local / editor files
+*.local
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,9 +40,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-.next/
-.vercel/
-node_modules/
-.env*
-

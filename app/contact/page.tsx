@@ -19,7 +19,7 @@ export default function ContactPage() {
                 Inga Jonaitytė
               </h2>
               <p className="text-foreground-muted uppercase tracking-eyebrow text-[10px] font-bold mt-2">
-                Lead Researcher
+                Principal Investigator
               </p>
             </div>
 
@@ -47,13 +47,36 @@ export default function ContactPage() {
             <h3 className="text-[10px] font-bold uppercase tracking-eyebrow text-foreground-muted">
               Academic Profiles
             </h3>
+
             <div className="space-y-4 flex flex-col">
-              <span className="text-foreground-muted hover:text-foreground cursor-not-allowed transition-colors text-sm font-medium flex items-center gap-2">
+              <a
+                href="https://orcid.org/0000-0001-6778-4274"
+                target="_blank"
+                rel="noreferrer"
+                className="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium flex items-center gap-2"
+              >
                 ORCID Registry <span className="text-xs opacity-50">↗</span>
-              </span>
-              <span className="text-foreground-muted hover:text-foreground cursor-not-allowed transition-colors text-sm font-medium flex items-center gap-2">
+              </a>
+
+              <a
+                href="https://www.unive.it/data/people/13910982"
+                target="_blank"
+                rel="noreferrer"
+                className="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium flex items-center gap-2"
+              >
                 Institutional Profile <span className="text-xs opacity-50">↗</span>
-              </span>
+              </a>
+
+              {/* Optional: add LinkedIn later (only if you want it public)
+              <a
+                href="https://www.linkedin.com/in/your-handle"
+                target="_blank"
+                rel="noreferrer"
+                className="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium flex items-center gap-2"
+              >
+                LinkedIn <span className="text-xs opacity-50">↗</span>
+              </a>
+              */}
             </div>
           </div>
         </Card>

@@ -79,6 +79,30 @@ export default function ResourcesPage() {
 </a>
 
           </Card>
+          {/* Card 3 */}
+<Card className="flex flex-col items-center text-center p-12">
+  <div className="w-16 h-16 bg-background-muted rounded-full flex items-center justify-center mb-8 text-foreground-muted">
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21H5a2 2 0 01-2-2V7a2 2 0 012-2h3l2-2h4l2 2h3a2 2 0 012 2v12a2 2 0 01-2 2z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 11v6m0 0l-2-2m2 2l2-2" />
+    </svg>
+  </div>
+
+  <h3 className="text-lg font-bold text-foreground mb-2">Workshop Slides</h3>
+  <p className="text-foreground-muted text-sm mb-8 max-w-xs mx-auto">
+    Slides for the online expert workshop (placeholder file until the final deck is uploaded).
+  </p>
+
+  <a
+    href="/documents/slides/icopebest_workshop_slides.pdf"
+    target="_blank"
+    rel="noreferrer"
+    className="px-6 py-2.5 bg-background-muted text-foreground text-xs font-semibold uppercase tracking-eyebrow rounded-full hover:bg-neutral-200"
+  >
+    Download PDF
+  </a>
+</Card>
+
         </div>
       </div>
     </>

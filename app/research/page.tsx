@@ -7,57 +7,63 @@ export default function ResearchPage() {
       <PageHeader
         eyebrow="CORE RESEARCH"
         title="Research"
-        subtitle="Methodological Approach and Key Themes"
+        subtitle="Experimental methods for automated advice, trust, and inclusion"
       />
 
       <div className="max-w-6xl mx-auto px-6 py-24">
-        {/* Methods Section */}
-        <div className="max-w-3xl mb-24">
+        {/* Methods */}
+        <div className="max-w-3xl mb-20">
           <h2 className="text-3xl font-serif font-bold text-foreground mb-6 tracking-tight">
-            Methodological Approach
+            Methodological approach
           </h2>
+
           <div className="space-y-6 text-foreground-muted leading-relaxed text-lg">
             <p>
-              I.COPE.BEST employs a mixed-methods approach, combining
-              quantitative data analysis with behavioral experimentation. We draw
-              upon principles from Behavioral Economics and Social Psychology to
-              construct a comprehensive picture of financial decision-making under
-              uncertainty.
+              I.COPE.BEST develops and applies behavioral experimental methods to study
+              decision-making in digital finance contexts, with a focus on automated and
+              AI-mediated advice environments.
             </p>
             <p>
-              Our experimental designs utilize incentivized tasks to elicit true
-              preferences regarding risk, ambiguity, and trust. These are
-              complemented by survey data that captures subjective perceptions of
-              complexity and user experience with digital platforms.
+              The empirical core combines structured surveys with interactive tasks (e.g.,
+              portfolio allocation under recommendations) to identify how institutional framing,
+              explanation design, and access to human support shape reliance, understanding,
+              and perceived legitimacy.
             </p>
           </div>
         </div>
 
-        {/* Research Themes Grid */}
+        {/* Themes */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
             {
-              title: "Trust & Adoption",
-              subtitle: "Digital Financial Tools",
-              desc: "Investigating the determinants of trust in new technologies vs traditional banking methods.",
+              title: "Trust & reliance",
+              subtitle: "Advisor identity and framing",
+              desc:
+                "How identity cues and institutional descriptions influence acceptance of recommendations and willingness to delegate decisions.",
             },
             {
-              title: "Complexity",
-              subtitle: "User Friction",
-              desc: "Analyzing how cognitive load and interface design impact the willingness to use digital services.",
+              title: "Explanation design",
+              subtitle: "Clarity and cognitive load",
+              desc:
+                "How explanation format and complexity affect understanding, confidence, perceived competence, and user experience.",
             },
             {
-              title: "Risk Perception",
-              subtitle: "Economic Resilience",
-              desc: "Understanding how external shocks (like the pandemic) alter long-term risk aversion.",
+              title: "Fairness & inclusion",
+              subtitle: "Legitimacy perceptions",
+              desc:
+                "How heterogeneous digital skills and financial literacy relate to perceived fairness, inclusion, and risks of unequal participation.",
             },
             {
-              title: "Algorithms",
-              subtitle: "Decision Support",
-              desc: "Studying behavioral responses to automated financial advice and robo-advisors.",
+              title: "Behavioral measurement",
+              subtitle: "Choices + perceptions",
+              desc:
+                "Integrating incentivized or consequential choices with survey measures to capture reliance, trust, and legitimacy outcomes.",
             },
           ].map((theme, idx) => (
-            <Card key={idx} className="flex flex-col h-full bg-background-muted/50 border-transparent">
+            <Card
+              key={idx}
+              className="flex flex-col h-full bg-background-muted/50 border-transparent p-10"
+            >
               <h3 className="text-2xl font-serif font-bold text-foreground mb-1">
                 {theme.title}
               </h3>

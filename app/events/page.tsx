@@ -30,6 +30,20 @@ export default function EventsPage() {
               </h3>
               <p className="text-foreground-muted">Format: Online (Zoom)</p>
             </div>
+            <div className="mt-6 text-foreground-muted leading-relaxed text-sm space-y-3">
+  <p>
+    This online expert workshop brings together academic, policy, and industry perspectives
+    to discuss how automated and AI-mediated financial advice systems shape trust, understanding,
+    and perceived fairness—focusing on design choices and institutional safeguards for inclusive
+    participation in digital finance.
+  </p>
+  <p>
+    The discussion is anchored in an experimental research design examining advisor framing,
+    explanation interfaces, and access to human support, with attention to heterogeneous digital skills
+    and financial literacy.
+  </p>
+</div>
+
 
             <div className="bg-background-muted rounded-lg p-8 mb-8 border border-border">
               <h4 className="text-[10px] font-bold uppercase tracking-eyebrow text-foreground-muted mb-6">
@@ -54,6 +68,25 @@ export default function EventsPage() {
                 </li>
               </ul>
             </div>
+<div className="flex flex-wrap gap-3 mb-10">
+  <a
+    href="/documents/events/icopebest_event_agenda.pdf"
+    target="_blank"
+    rel="noreferrer"
+    className="inline-flex items-center rounded-full border border-neutral-300 px-4 py-2 text-xs font-medium hover:bg-neutral-50"
+  >
+    View agenda (PDF)
+  </a>
+
+  <a
+    href="/documents/slides/icopebest_workshop_slides.pdf"
+    target="_blank"
+    rel="noreferrer"
+    className="inline-flex items-center rounded-full border border-neutral-300 px-4 py-2 text-xs font-medium hover:bg-neutral-50"
+  >
+    Workshop slides (PDF)
+  </a>
+</div>
 
             <p className="text-xs text-foreground-muted italic">
               Materials will be updated after the event.

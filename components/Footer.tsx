@@ -8,7 +8,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-[#424245] pb-12 mb-8">
           {/* Column 1: Project & Funding (Wider) */}
           <div className="md:col-span-2 space-y-6">
-            <h3 className="text-[#f5f5f7] font-serif text-sm tracking-wide">Project Overview</h3>
+            <h3 className="text-[#f5f5f7] font-serif text-sm tracking-wide">Funding & Acknowledgements</h3>
+</h3>
             <p className="leading-relaxed text-[#86868b] max-w-md text-balance">
               {fundingText}
             </p>

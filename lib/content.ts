@@ -47,7 +47,21 @@ export const outputs = [
 ];
 
 
-export const fundingText = "This project is funded by the European Union’s NextGenerationEU plan under the Italian Ministry for Universities and Research (MUR) ‘Young Researchers – Seal of Excellence’ grant (Project SOE_0000193, CUP H73C22001440001).";
+export const repoUrl = "https://github.com/inarts/icopebest";
+
+export const fundingText =
+  "Funded by the European Union NextGenerationEU and the Italian MUR “Young Researchers – Seal of Excellence” (SOE_0000193; CUP H73C22001440001).";
+
+export const fullFundingText =
+  "This project is funded by the European Union’s NextGenerationEU plan under the Italian Ministry for Universities and Research (MUR) ‘Young Researchers – Seal of Excellence’ grant (Project SOE_0000193, CUP H73C22001440001).";
+
+export const workshop = {
+  title: "Online Expert Workshop — Automated Financial Advice, Trust, and Inclusion",
+  short:
+    "An interactive online workshop bringing together academia, policy, and industry to discuss how automated financial advice systems shape trust, decision-making, and perceptions of fairness—focusing on design choices and feasible safeguards for inclusive digital finance.",
+  long:
+    "This online expert workshop convenes researchers, policymakers, and industry practitioners to examine how automated and AI-mediated financial advice systems influence investment behavior, trust, understanding, and perceptions of fairness and inclusion. The discussion focuses on institutional design choices and practical safeguards—moving beyond algorithmic accuracy—to reflect on risks of exclusion or over-reliance and feasible policy and organizational responses. The workshop is organized within the I.COPE.BEST research project and is intended as a structured exchange to inform ongoing empirical work and policy-relevant debate.",
+};
 
 export const footerLinks = {
   project: "Project Overview",

@@ -1,108 +1,90 @@
-// app/project/page.tsx
+// FILE: app/project/page.tsx
 import PageHeader from "@/components/PageHeader";
 import Card from "@/components/Card";
-import { profileLinks, shortFundingText } from "@/lib/content";
-
-const btn =
-  "inline-flex items-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-xs font-medium hover:bg-neutral-50 transition";
+import { projectFullTitle, shortFundingText } from "@/lib/content";
 
 export default function ProjectPage() {
   return (
     <>
       <PageHeader
-        eyebrow="PROJECT OVERVIEW"
-        title="About the Project"
-        subtitle="Behavioral evidence on digital finance, trust, and inclusion"
+        eyebrow="PROJECT"
+        title="Project"
+        subtitle="Scope, objectives, and design principles"
       />
 
-      <div className="max-w-5xl mx-auto px-6 py-24 space-y-10">
-        <Card className="p-10 space-y-6">
-          <div className="space-y-2">
-            <h2 className="text-lg font-serif font-bold text-foreground">Context</h2>
-            <p className="text-sm text-foreground-muted leading-relaxed">
-              I.COPE.BEST studies how consumers make decisions in digital financial
-              environments, with particular attention to trust, information processing,
-              and risks of exclusion when services rely on interfaces, automation,
-              and AI-mediated support.
+      <div className="max-w-6xl mx-auto px-6 py-24">
+        <div className="max-w-3xl mb-18">
+          <h2 className="text-3xl font-serif font-bold text-foreground mb-6 tracking-tight">
+            Overview
+          </h2>
+
+          <div className="space-y-6 text-foreground-muted leading-relaxed text-lg">
+            <p>
+              I.COPE.BEST is a 24-month research project titled “{projectFullTitle}”. It studies
+              how consumers navigate digital financial technologies under pandemic-era
+              conditions, when uncertainty and constraints can reshape financial behaviour.
             </p>
-            <p className="text-sm text-foreground-muted leading-relaxed">
-              Rather than treating adoption as purely a function of “accuracy,” the project
-              focuses on the institutional and design conditions that shape perceived legitimacy:
-              how advice is framed, how explanations are provided, and how access to human
-              support is structured.
+
+            <p>
+              A central concern is inclusion: digital finance can widen access, but it can also
+              amplify gaps when individuals differ in digital skills, confidence, and financial
+              literacy. The project therefore emphasizes heterogeneity—particularly for less
+              tech-savvy users and groups commonly affected by capability gaps.
             </p>
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <h2 className="text-lg font-serif font-bold text-foreground">Objectives</h2>
-            <ul className="list-disc pl-5 space-y-2 text-sm text-foreground-muted leading-relaxed">
+        <div className="mt-16 max-w-3xl">
+          <h2 className="text-3xl font-serif font-bold text-foreground mb-6 tracking-tight">
+            Objectives
+          </h2>
+
+          <ul className="space-y-3 text-foreground-muted text-lg leading-relaxed">
+            <li>
+              <span className="font-semibold text-foreground">O1.</span>{" "}
+              Map the risks and practical challenges consumers face when using FinTech for
+              financial decision-making.
+            </li>
+            <li>
+              <span className="font-semibold text-foreground">O2.</span>{" "}
+              Clarify how FinTech interacts with behavioural processes that shape consumer
+              financial behaviour.
+            </li>
+            <li>
+              <span className="font-semibold text-foreground">O3.</span>{" "}
+              Examine the potential of FinTech to support financial inclusion and improve
+              economic decisions.
+            </li>
+            <li>
+              <span className="font-semibold text-foreground">O4.</span>{" "}
+              Produce experimental evidence and translate it into careful, usable guidance for
+              FinTech promoters and consumers.
+            </li>
+          </ul>
+        </div>
+
+        <div className="mt-18 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card className="flex flex-col h-full bg-background-muted/50 border-transparent p-10">
+            <h3 className="text-2xl font-serif font-bold text-foreground mb-3">
+              Methods in brief
+            </h3>
+            <ul className="space-y-3 text-foreground-muted leading-relaxed text-sm">
+              <li>Behavioural economics and consumer psychology framing.</li>
+              <li>Surveys and experimental tasks implemented online.</li>
               <li>
-                Generate behavioral evidence on reliance, trust, and understanding in automated
-                financial advice settings.
-              </li>
-              <li>
-                Study how institutional framings and explanation design affect perceived fairness
-                and legitimacy.
-              </li>
-              <li>
-                Examine heterogeneous responses linked to digital skills and financial literacy,
-                with attention to inclusion risks.
-              </li>
-              <li>
-                Translate findings into research outputs and practice-oriented guidance for
-                responsible digital finance design.
+                Crowdsourcing and an interactive platform that mimics key elements of
+                robo-advisors and personal banking environments.
               </li>
             </ul>
-          </div>
+          </Card>
 
-          <div className="space-y-2">
-            <h2 className="text-lg font-serif font-bold text-foreground">Approach</h2>
-            <p className="text-sm text-foreground-muted leading-relaxed">
-              The empirical core combines survey measurement with interactive experimental tasks
-              designed to mimic key features of real advice environments (e.g., portfolio allocation,
-              recommendation displays, and explanation interfaces). The design emphasizes causal
-              identification of how interface and institutional choices influence reliance, confidence,
-              perceived inclusion, and legitimacy.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-              <div className="rounded-2xl border border-neutral-200 p-6">
-                <h3 className="text-sm font-semibold text-foreground mb-2">What is measured</h3>
-                <p className="text-sm text-foreground-muted leading-relaxed">
-                  Behavioral choices (e.g., allocations) plus perceptions of clarity, competence,
-                  trust, procedural/distributive fairness, inclusion, and legitimacy.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-neutral-200 p-6">
-                <h3 className="text-sm font-semibold text-foreground mb-2">What varies</h3>
-                <p className="text-sm text-foreground-muted leading-relaxed">
-                  Advisor identity cues, explanation formats, and “fair access” rules shaping when
-                  and how human support is available.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Card>
-
-        <Card className="p-10 space-y-4">
-          <h2 className="text-lg font-serif font-bold text-foreground">Funding</h2>
-          <p className="text-sm text-foreground-muted leading-relaxed">{shortFundingText}</p>
-          <p className="text-xs text-foreground-muted leading-relaxed">
-            (The full legal funding statement is provided in the site footer.)
-          </p>
-        </Card>
-
-        <Card className="p-10 space-y-4">
-          <h2 className="text-lg font-serif font-bold text-foreground">
-            Repository &amp; materials
-          </h2>
-          <p className="text-sm text-foreground-muted leading-relaxed">
-            Source code and version history for the I.COPE.BEST public website.
-          </p>
-          <a href={profileLinks.github} target="_blank" rel="noreferrer" className={btn}>
-            View on GitHub ↗
-          </a>
-        </Card>
+          <Card className="flex flex-col h-full bg-background-muted/50 border-transparent p-10">
+            <h3 className="text-2xl font-serif font-bold text-foreground mb-3">
+              Funding
+            </h3>
+            <p className="text-foreground-muted leading-relaxed text-sm">{shortFundingText}</p>
+          </Card>
+        </div>
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-// app/events/page.tsx
+// FILE: app/events/page.tsx
 import PageHeader from "@/components/PageHeader";
 import Badge from "@/components/Badge";
 
@@ -15,41 +15,46 @@ export default function EventsPage() {
       />
 
       <div className="max-w-4xl mx-auto px-6 py-24">
-        <div className="border border-border rounded-lg overflow-hidden shadow-soft bg-white mb-20">
-          <div className="bg-background-muted/50 px-8 py-5 border-b border-border flex justify-between items-center">
+        {/* Event block (no outer frame/shadow to match site style) */}
+        <div className="mb-20">
+          <div className="bg-background-muted/50 px-8 py-5 border border-border rounded-lg flex justify-between items-center">
             <span className="text-[10px] font-bold tracking-eyebrow text-foreground-muted uppercase">
               Upcoming
             </span>
             <Badge>Workshop</Badge>
           </div>
 
-          <div className="p-8 md:p-12">
+          <div className="px-8 pt-10 md:px-12 md:pt-12">
             <div className="mb-8">
               <span className="block text-navy-900 font-bold mb-2 text-xs uppercase tracking-eyebrow">
-                29 January
+                29 January 2026
               </span>
               <h3 className="text-3xl font-serif font-bold text-foreground mb-3">
                 FinTech Inclusion: Research Seminar &amp; Workshop
               </h3>
-              <p className="text-foreground-muted">Format: Online (Zoom)</p>
-            </div>
 
-            <div className="mt-6 text-foreground-muted leading-relaxed text-sm space-y-3">
-              <p>
-                This online session brings together academic, policy, and industry
-                perspectives to discuss how automated and AI-mediated financial advice
-                systems shape trust, understanding, and perceived fairness—focusing on
-                interface design choices and institutional safeguards for inclusive
-                participation in digital finance.
-              </p>
-              <p>
-                The discussion is anchored in an experimental research design examining
-                advisor framing, explanation interfaces, and access to human support, with
-                attention to heterogeneous digital skills and financial literacy.
+              <p className="text-foreground-muted">
+                Format: Online (Zoom)
+                <br />
+                <span className="text-xs">Time zone: Europe/Rome</span>
               </p>
             </div>
 
-            <div className="bg-background-muted rounded-lg p-8 mb-8 border border-border mt-10">
+            <div className="mt-6 text-foreground-muted leading-relaxed text-sm space-y-3 max-w-3xl">
+              <p>
+                The seminar presents findings from the project’s experimental research (WP4),
+                focusing on trust, understanding, and perceived fairness in automated and
+                AI-mediated financial advice. Participation is open to all interested
+                audiences.
+              </p>
+              <p>
+                The workshop is designed for discussion with stakeholders, addressing design
+                and institutional considerations for inclusive digital finance, including
+                explanation formats and access to human support.
+              </p>
+            </div>
+
+            <div className="bg-background-muted rounded-lg p-8 mb-8 border border-border mt-10 max-w-3xl">
               <h4 className="text-[10px] font-bold uppercase tracking-eyebrow text-foreground-muted mb-6">
                 Schedule
               </h4>
@@ -94,7 +99,7 @@ export default function EventsPage() {
             </div>
 
             <p className="text-xs text-foreground-muted italic">
-              Materials will be updated after the event.
+              Materials may be updated after the event.
             </p>
           </div>
         </div>
@@ -103,7 +108,9 @@ export default function EventsPage() {
           <h3 className="text-2xl font-serif font-bold text-foreground mb-3">
             Registration
           </h3>
-          <p className="text-foreground-muted">Registration will open soon.</p>
+          <p className="text-foreground-muted">
+            Registration details will be posted when available.
+          </p>
         </div>
       </div>
     </>

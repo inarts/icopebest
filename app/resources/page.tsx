@@ -1,82 +1,74 @@
-// app/resources/page.tsx
+// FILE: app/resources/page.tsx
 import PageHeader from "@/components/PageHeader";
+import Card from "@/components/Card";
+import { publicDocuments } from "@/lib/content";
 
-const btn =
-  "inline-flex items-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-xs font-medium hover:bg-neutral-50 transition";
-
-type ResourceRow = {
-  title: string;
-  desc: string;
-  viewHref: string;
-  downloadHref?: string;
-  note?: string;
-};
-
-const resources: ResourceRow[] = [
-  {
-    title: "Project factsheet",
-    desc: "One-page public summary (scope, methods, themes).",
-    viewHref: "/documents/factsheet/icopebest_factsheet.pdf",
-    downloadHref: "/documents/factsheet/icopebest_factsheet.pdf",
-  },
-  {
-    title: "Presentation slides",
-    desc: "Public-facing presentation deck (PDF).",
-    viewHref: "/documents/slides/icopebest_presentation_slides.pdf",
-    downloadHref: "/documents/slides/icopebest_presentation_slides.pdf",
-  },
-  {
-    title: "Workshop slides",
-    desc: "Workshop deck (PDF).",
-    viewHref: "/documents/slides/icopebest_workshop_slides.pdf",
-    downloadHref: "/documents/slides/icopebest_workshop_slides.pdf",
-  },
-];
+function PdfActions({ href }: { href: string }) {
+  return (
+    <div className="flex flex-wrap gap-3 mt-6">
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex w-fit items-center justify-center rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-background-muted/40 transition-colors"
+      >
+        View PDF
+      </a>
+      <a
+        href={href}
+        download
+        className="inline-flex w-fit items-center justify-center rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-background-muted/40 transition-colors"
+      >
+        Download
+      </a>
+    </div>
+  );
+}
 
 export default function ResourcesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="MATERIALS"
+        eyebrow="RESOURCES"
         title="Resources"
-        subtitle="Public-facing PDFs and workshop materials"
+        subtitle="Downloadable public materials"
       />
 
-      <div className="max-w-5xl mx-auto px-6 py-24">
-        <div className="space-y-4">
-          {resources.map((r) => (
-            <div
-              key={r.title}
-              className="rounded-2xl border border-border bg-white shadow-soft p-6"
-            >
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div className="min-w-0">
-                  <h2 className="text-lg font-serif font-bold text-foreground">
-                    {r.title}
-                  </h2>
-                  <p className="text-sm text-foreground-muted leading-relaxed mt-1">
-                    {r.desc}
-                  </p>
-                </div>
+      <div className="max-w-6xl mx-auto px-6 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card className="flex flex-col h-full bg-background-muted/50 border-transparent p-10">
+            <h2 className="text-2xl font-serif font-bold text-foreground mb-2">
+              {publicDocuments.factsheet.title}
+            </h2>
+            <p className="text-foreground-muted leading-relaxed text-sm">
+              {publicDocuments.factsheet.note}
+            </p>
+            <PdfActions href={publicDocuments.factsheet.href} />
+          </Card>
 
-                <div className="flex flex-wrap gap-2 shrink-0">
-                  <a
-                    href={r.viewHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={btn}
-                  >
-                    View PDF
-                  </a>
-                  {r.downloadHref ? (
-                    <a href={r.downloadHref} download className={btn}>
-                      Download PDF
-                    </a>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          ))}
+          {"slides" in publicDocuments && (
+            <Card className="flex flex-col h-full bg-background-muted/50 border-transparent p-10">
+              <h2 className="text-2xl font-serif font-bold text-foreground mb-2">
+                {publicDocuments.slides.title}
+              </h2>
+              <p className="text-foreground-muted leading-relaxed text-sm">
+                {publicDocuments.slides.note}
+              </p>
+              <PdfActions href={publicDocuments.slides.href} />
+            </Card>
+          )}
+
+          {"workshopSlides" in publicDocuments && (
+            <Card className="flex flex-col h-full bg-background-muted/50 border-transparent p-10 md:col-span-2">
+              <h2 className="text-2xl font-serif font-bold text-foreground mb-2">
+                {publicDocuments.workshopSlides.title}
+              </h2>
+              <p className="text-foreground-muted leading-relaxed text-sm max-w-3xl">
+                {publicDocuments.workshopSlides.note}
+              </p>
+              <PdfActions href={publicDocuments.workshopSlides.href} />
+            </Card>
+          )}
         </div>
       </div>
     </>

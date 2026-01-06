@@ -64,10 +64,13 @@ export const workshop = {
 };
 
 export const footerLinks = {
-  project: "Project Overview",
+  project: "Funding & Acknowledgements",
   nav: siteConfig.navLinks,
   profiles: [
-    { name: "Institutional Profile", href: "#" },
-    { name: "ORCID Registry", href: "#" },
+    { name: "Institutional Profile", href: "https://www.unive.it/data/people/13910982" },
+    { name: "ORCID Registry", href: "https://orcid.org/0000-0001-6778-4274" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/ingaj/" },
+    // Optional but very “good research practice”:
+    { name: "Source code (GitHub)", href: "https://github.com/inarts/icopebest" },
   ],
 };

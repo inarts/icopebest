@@ -1,9 +1,9 @@
-// FILE: app/events/page.tsx
+// app/events/page.tsx
 import PageHeader from "@/components/PageHeader";
-import Badge from "@/components/Badge";
+import Card from "@/components/Card";
 
 const btn =
-  "inline-flex items-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-xs font-medium hover:bg-neutral-50 transition";
+  "inline-flex items-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-700 hover:text-neutral-900 hover:bg-neutral-50 transition";
 
 export default function EventsPage() {
   return (
@@ -14,104 +14,99 @@ export default function EventsPage() {
         subtitle="Seminars and workshops connected to the project"
       />
 
-      <div className="max-w-4xl mx-auto px-6 py-24">
-        {/* Event block (no outer frame/shadow to match site style) */}
-        <div className="mb-20">
-          <div className="bg-background-muted/50 px-8 py-5 border border-border rounded-lg flex justify-between items-center">
-            <span className="text-[10px] font-bold tracking-eyebrow text-foreground-muted uppercase">
-              Upcoming
-            </span>
-            <Badge>Workshop</Badge>
+      <div className="max-w-5xl mx-auto px-6 py-24 space-y-10">
+        <Card className="p-10">
+          {/* Meta line */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div className="text-sm text-foreground-muted">
+              <span className="font-medium">29 January</span>
+              <span className="mx-2 text-border">•</span>
+              <span>Online (Zoom)</span>
+              <span className="mx-2 text-border">•</span>
+              <span>16:00–18:00</span>
+            </div>
+
+            <div className="text-sm text-foreground-muted">
+              Status: <span className="font-medium">Scheduled</span>
+            </div>
           </div>
 
-          <div className="px-8 pt-10 md:px-12 md:pt-12">
-            <div className="mb-8">
-              <span className="block text-navy-900 font-bold mb-2 text-xs uppercase tracking-eyebrow">
-                29 January 2026
-              </span>
-              <h3 className="text-3xl font-serif font-bold text-foreground mb-3">
-                FinTech Inclusion: Research Seminar &amp; Workshop
-              </h3>
+          <h2 className="mt-4 text-3xl font-serif font-bold text-foreground tracking-tight leading-tight">
+            FinTech Inclusion: Research Seminar &amp; Workshop
+          </h2>
 
-              <p className="text-foreground-muted">
-                Format: Online (Zoom)
-                <br />
-                <span className="text-xs">Time zone: Europe/Rome</span>
-              </p>
+          <p className="mt-4 text-base text-foreground-muted leading-relaxed max-w-3xl">
+            An online session bringing together academic and applied perspectives on how automated
+            and AI-mediated financial advice systems shape trust, understanding, and perceived
+            fairness—focusing on interface choices and institutional safeguards for inclusive
+            participation in digital finance.
+          </p>
+
+          {/* Schedule (muted; no black emphasis) */}
+          <div className="mt-8 rounded-2xl border border-border bg-background-muted/50 p-6">
+            <div className="text-[10px] font-semibold uppercase tracking-eyebrow text-foreground-muted mb-4">
+              Schedule
             </div>
 
-            <div className="mt-6 text-foreground-muted leading-relaxed text-sm space-y-3 max-w-3xl">
-              <p>
-                The seminar presents findings from the project’s experimental research (WP4),
-                focusing on trust, understanding, and perceived fairness in automated and
-                AI-mediated financial advice. Participation is open to all interested
-                audiences.
-              </p>
-              <p>
-                The workshop is designed for discussion with stakeholders, addressing design
-                and institutional considerations for inclusive digital finance, including
-                explanation formats and access to human support.
-              </p>
+            <div className="space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-8">
+                <div className="text-sm font-mono text-foreground-muted w-28 shrink-0">
+                  16:00–17:00
+                </div>
+                <div className="text-base text-foreground-muted leading-relaxed">
+                  Research seminar
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-8">
+                <div className="text-sm font-mono text-foreground-muted w-28 shrink-0">
+                  17:00–18:00
+                </div>
+                <div className="text-base text-foreground-muted leading-relaxed">
+                  Interactive workshop
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div className="bg-background-muted rounded-lg p-8 mb-8 border border-border mt-10 max-w-3xl">
-              <h4 className="text-[10px] font-bold uppercase tracking-eyebrow text-foreground-muted mb-6">
-                Schedule
-              </h4>
-              <ul className="space-y-6">
-                <li className="flex flex-col sm:flex-row gap-2 sm:gap-10">
-                  <span className="text-sm font-mono text-foreground-muted w-24 shrink-0">
-                    16:00–17:00
-                  </span>
-                  <span className="text-foreground font-medium text-sm">
-                    Research seminar
-                  </span>
-                </li>
-                <li className="flex flex-col sm:flex-row gap-2 sm:gap-10">
-                  <span className="text-sm font-mono text-foreground-muted w-24 shrink-0">
-                    17:00–18:00
-                  </span>
-                  <span className="text-foreground font-medium text-sm">
-                    Interactive workshop
-                  </span>
-                </li>
-              </ul>
-            </div>
+          {/* Materials */}
+          <div className="mt-8 flex flex-wrap gap-2">
+            <a
+              href="/documents/events/icopebest_event_agenda.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className={btn}
+            >
+              View agenda (PDF)
+            </a>
 
-            <div className="flex flex-wrap gap-3 mb-10">
-              <a
-                href="/documents/events/icopebest_event_agenda.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className={btn}
-              >
-                View agenda (PDF)
-              </a>
+            <a
+              href="/documents/slides/icopebest_workshop_slides.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className={btn}
+            >
+              Workshop slides (PDF)
+            </a>
+          </div>
 
-              <a
-                href="/documents/slides/icopebest_workshop_slides.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className={btn}
-              >
-                Workshop slides (PDF)
-              </a>
-            </div>
-
-            <p className="text-xs text-foreground-muted italic">
-              Materials may be updated after the event.
+          {/* Micro-notes */}
+          <div className="mt-4 space-y-1">
+            <p className="text-xs text-foreground-muted">
+              Materials will be updated after the event.
+            </p>
+            <p className="text-xs text-foreground-muted">
+              Registration details will be posted when available.
             </p>
           </div>
-        </div>
+        </Card>
 
-        <div className="text-center py-16 border-t border-border">
-          <h3 className="text-2xl font-serif font-bold text-foreground mb-3">
-            Registration
-          </h3>
-          <p className="text-foreground-muted">
-            Registration details will be posted when available.
+        <Card className="p-10">
+          <h2 className="text-2xl font-serif font-bold text-foreground">Past events</h2>
+          <p className="mt-2 text-base text-foreground-muted leading-relaxed">
+            Past event listings will be added as materials become available.
           </p>
-        </div>
+        </Card>
       </div>
     </>
   );

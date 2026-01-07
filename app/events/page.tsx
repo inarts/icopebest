@@ -1,6 +1,7 @@
 // app/events/page.tsx
 import PageHeader from "@/components/PageHeader";
 import Card from "@/components/Card";
+import { quietBtn } from "@/components/styles";
 
 const btn =
   "inline-flex items-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-700 hover:text-neutral-900 hover:bg-neutral-50 transition";
@@ -75,7 +76,7 @@ export default function EventsPage() {
               href="/documents/events/icopebest_event_agenda.pdf"
               target="_blank"
               rel="noreferrer"
-              className={btn}
+              className={quietBtn}
             >
               View agenda (PDF)
             </a>
@@ -84,7 +85,8 @@ export default function EventsPage() {
               href="/documents/slides/icopebest_workshop_slides.pdf"
               target="_blank"
               rel="noreferrer"
-              className={btn}
+              className={quietBtn}
+
             >
               Workshop slides (PDF)
             </a>

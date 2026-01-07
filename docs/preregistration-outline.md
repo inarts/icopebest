@@ -315,8 +315,12 @@ Report Cronbach's alpha and McDonald's omega for the three-item index:
 
 Simple sum of correct responses to Lusardi & Mitchell "Big Three" questions:
 
-```
-FINLIT_CORRECT = (FINLIT_1 == 1) + (FINLIT_2 == 3) + (FINLIT_3 == 2)
+```r
+# R implementation
+FINLIT_CORRECT <- (FINLIT_1 == 1) + (FINLIT_2 == 3) + (FINLIT_3 == 2)
+
+# Equivalent in Stata: egen FINLIT_CORRECT = rowtotal(finlit1_correct finlit2_correct finlit3_correct)
+# where finlit*_correct are indicator variables for correct responses
 ```
 
 Range: 0–3 (count of correct answers)
@@ -338,6 +342,8 @@ Range: 0–3 (count of correct answers)
 **Planned N:** 198 completions (approximately 200)
 
 ### 6.2 Power Analysis
+
+**Note:** All power calculations assume α = 0.05 (two-tailed tests) and balanced allocation across conditions.
 
 #### E2 Main Effects (H1, H2)
 
@@ -412,13 +418,17 @@ The following are **not** exclusion criteria:
 
 ### 7.3 RA_QUAL Definition
 
-```
-RA_QUAL = 1 if:
-  RA_MOVES ≥ 1         AND    # At least one slider movement
-  RA_TPAGE ≥ 5000      AND    # At least 5 seconds on task page
-  RA_FMOVE ≤ 60000            # First move within 60 seconds
+```r
+# R implementation
+RA_QUAL <- ifelse(
+  RA_MOVES >= 1 &       # At least one slider movement
+  RA_TPAGE >= 5000 &    # At least 5 seconds on task page
+  RA_FMOVE <= 60000,    # First move within 60 seconds
+  1, 0
+)
 
-RA_QUAL = 0 otherwise
+# Equivalent in Stata:
+# gen RA_QUAL = (RA_MOVES >= 1 & RA_TPAGE >= 5000 & RA_FMOVE <= 60000)
 ```
 
 ### 7.4 Expected Exclusion Rates

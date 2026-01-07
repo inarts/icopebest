@@ -444,7 +444,7 @@ FALI = mean( z(E1_FAIR), z(E1_LEGIT), z(E1_INCL_REV) )
 
 **Current Plan:** N=198, rule-of-thumb justification
 
-**Critique:**
+**Critique (α = 0.05, two-tailed tests):**
 | Test | Effect Size | Power (N=198) | Assessment |
 |------|-------------|---------------|------------|
 | Main effect AI_ID | d=0.30 | ~60% | Underpowered |

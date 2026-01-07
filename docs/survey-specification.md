@@ -295,7 +295,7 @@ Please read the above information carefully before proceeding.
 - If AI_ID=1 and MC_ID_CHECK ≠ 2 → Show message: "Please re-read the information. The digital advisor is operated by an independent provider." → Return to Page 2.1
 - If MC_ID_CHECK = 3 → Show message: "Please re-read the information carefully and select the correct answer." → Return to Page 2.1
 
-**Note:** This is a comprehension gate, not a hard exclusion. All participants must answer correctly to proceed, ensuring treatment exposure.
+**Design Rationale:** The "Not sure" option (value 3) is intentionally included to allow participants who did not attend to the information to self-identify, rather than forcing a random guess. However, this response is not accepted—participants must re-read and provide the correct answer to proceed. This forced-choice design ensures treatment exposure while preserving measurement of initial comprehension uncertainty.
 
 ---
 
@@ -380,7 +380,7 @@ Please read the above information carefully before proceeding.
 
 1. **Slider Initialization:** Sliders start at 0% (cash slider) and 50% (stocks-of-invested slider)
 2. **Move Requirement:** Next button disabled until RA_MOVES ≥ 1
-3. **Warning:** If no move after 5 seconds, show: "Please move at least one slider to continue." (log WARN_SHOWN=1)
+3. **Warning:** If no move after 8 seconds, show: "Please move at least one slider to continue." (log WARN_SHOWN=1). *Note: Warning delay (8s) is intentionally longer than RA_MINTIME (5s) to provide buffer and avoid confusing UX.*
 4. **Suggestion Box:** Collapsed by default; logs BTN_SHOW when opened, BTN_HIDE when closed
 5. **Apply Suggestion:** Sets sliders to E2_REC_C, E2_REC_E; logs BTN_APPLY, BTN_APPLYMS
 
@@ -857,16 +857,16 @@ The E2 Task page uses embedded JavaScript that:
 
 ## Appendix A: Before → After Variable Changes
 
-| Original | Revised | Change Type |
-|----------|---------|-------------|
-| RA_MINTIME = 2000 | RA_MINTIME = 5000 | Parameter update |
-| — | E2_INTRO_TIME | New variable |
-| — | MC_ID_CHECK | New variable |
-| "the advisor" (CONFL_AI) | "the digital advisory service" | Wording |
-| "people like you" (E2_INCL) | "someone in your situation" | Wording |
-| WTP_HUM 0–50€ | WTP_HUM 0–100€ | Scale expansion |
-| "Please select 7" (ATTN_7) | "select the number that is four plus three" | Wording |
-| MC_ID_OP option 1: "The bank" | "The bank (their own advisory service)" | Wording |
+| Original | Revised | Change Type | Rationale |
+|----------|---------|-------------|-----------|
+| RA_MINTIME = 2000 | RA_MINTIME = 5000 | Parameter update | Increased from 2000ms for stricter quality control; 2s was too lenient for meaningful task engagement |
+| — | E2_INTRO_TIME | New variable | Track time on intro page for exposure sensitivity |
+| — | MC_ID_CHECK | New variable | Comprehension gate to ensure treatment exposure |
+| "the advisor" (CONFL_AI) | "the digital advisory service" | Wording | Clarify reference to digital tool |
+| "people like you" (E2_INCL) | "someone in your situation" | Wording | Reduce ambiguity |
+| WTP_HUM 0–50€ | WTP_HUM 0–100€ | Scale expansion | Avoid ceiling effects |
+| "Please select 7" (ATTN_7) | "select the number that is four plus three" | Wording | Harder attention check |
+| MC_ID_OP option 1: "The bank" | "The bank (their own advisory service)" | Wording | Equalize option length |
 
 ---
 

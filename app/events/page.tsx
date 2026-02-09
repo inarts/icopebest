@@ -13,17 +13,81 @@ export default function EventsPage() {
 
       <div className="max-w-5xl mx-auto px-6 py-24 space-y-12">
         {/* =========================
-            EXPERT WORKSHOP
+            RESEARCH SEMINAR (now first, Feb 9)
             ========================= */}
         <Card>
           {/* Meta */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div className="text-sm text-foreground-muted">
-              <span className="font-medium">5 February 2026</span>
+              <span className="font-medium">9 February 2026</span>
               <span className="mx-2 text-border">•</span>
               <span>Online (Zoom)</span>
               <span className="mx-2 text-border">•</span>
-              <span>14:00–15:00</span>
+              <span>11:00–12:00</span>
+            </div>
+
+            <div className="text-sm text-foreground-muted">
+              Audience: <span className="font-medium">Faculty / Researchers</span>
+            </div>
+          </div>
+
+          <h2 className="mt-4 text-3xl font-serif font-bold text-foreground tracking-tight leading-tight">
+            Automated Advice, Trust, and Fairness in Financial Decision-Making
+          </h2>
+
+          <p className="mt-4 text-base text-foreground-muted leading-relaxed max-w-3xl">
+            Research seminar presenting ongoing work from the I.COPE.BEST project on how people
+            understand and use automated investment advice. The focus is on experimental design,
+            measurement, and identification strategy; early descriptive patterns may be shared if
+            available at the time of the talk.
+          </p>
+
+          {/* Details */}
+          <div className="mt-8 rounded-2xl border border-border bg-background-muted/50 p-6">
+            <div className="text-[10px] font-semibold uppercase tracking-eyebrow text-foreground-muted mb-4">
+              Details
+            </div>
+
+            <ul className="space-y-2 text-sm text-foreground-muted">
+              <li>Language: English</li>
+              <li>Audience: Faculty, PhD students, graduate students</li>
+              <li>Speaker: Inga Jonaitytė (Venice School of Management)</li>
+            </ul>
+          </div>
+
+          {/* Actions */}
+          <div className="mt-8 flex flex-wrap gap-2">
+            <a
+              href="https://univemanagement.eu.qualtrics.com/jfe/form/SV_eWBQbOif6xHKdSK"
+              target="_blank"
+              rel="noreferrer"
+              className={quietBtn}
+            >
+              Register (Qualtrics)
+            </a>
+            <a
+              href="/documents/events/20260209_icopebest_seminar.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className={quietBtn}
+            >
+              Download Flyer (PDF)
+            </a>
+          </div>
+        </Card>
+
+        {/* =========================
+            EXPERT WORKSHOP (now second, Feb 10)
+            ========================= */}
+        <Card>
+          {/* Meta */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div className="text-sm text-foreground-muted">
+              <span className="font-medium">10 February 2026</span>
+              <span className="mx-2 text-border">•</span>
+              <span>Online (Zoom)</span>
+              <span className="mx-2 text-border">•</span>
+              <span>18:00–19:00</span>
             </div>
 
             <div className="text-sm text-foreground-muted">
@@ -32,7 +96,7 @@ export default function EventsPage() {
           </div>
 
           <h2 className="mt-4 text-3xl font-serif font-bold text-foreground tracking-tight leading-tight">
-            Costruire fiducia e inclusione nella consulenza finanziaria digitale
+            Consulenza finanziaria digitale nell'era del FinTech: fiducia, disclosure e accesso al supporto umano
           </h2>
 
           <p className="mt-4 text-base text-foreground-muted leading-relaxed max-w-3xl">
@@ -65,65 +129,21 @@ export default function EventsPage() {
             >
               Register (Qualtrics)
             </a>
-          </div>
-        </Card>
-
-        {/* =========================
-            RESEARCH SEMINAR
-            ========================= */}
-        <Card>
-          {/* Meta */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-            <div className="text-sm text-foreground-muted">
-              <span className="font-medium">February 2026</span>
-              <span className="mx-2 text-border">•</span>
-              <span>Online (Zoom)</span>
-              <span className="mx-2 text-border">•</span>
-              <span>16:00–17:00</span>
-            </div>
-
-            <div className="text-sm text-foreground-muted">
-              Status: <span className="font-medium">Date TBA</span>
-            </div>
-          </div>
-
-          <h2 className="mt-4 text-3xl font-serif font-bold text-foreground tracking-tight leading-tight">
-            When Do People Follow Digital Advice?
-          </h2>
-
-          <p className="mt-1 text-base text-foreground-muted italic">
-            Trust, disclosure, and access in an online experiment
-          </p>
-
-          <p className="mt-4 text-base text-foreground-muted leading-relaxed max-w-3xl">
-            Research seminar presenting ongoing work from the I.COPE.BEST project on how people
-            understand and use automated investment advice. The focus is on experimental design,
-            measurement, and identification strategy; early descriptive patterns may be shared if
-            available at the time of the talk.
-          </p>
-
-          {/* Details */}
-          <div className="mt-8 rounded-2xl border border-border bg-background-muted/50 p-6">
-            <div className="text-[10px] font-semibold uppercase tracking-eyebrow text-foreground-muted mb-4">
-              Details
-            </div>
-
-            <ul className="space-y-2 text-sm text-foreground-muted">
-              <li>Language: English</li>
-              <li>Audience: Faculty, PhD students, graduate students</li>
-              <li>Speaker: Inga Jonaitytė (Venice School of Management)</li>
-            </ul>
-          </div>
-
-          {/* Actions */}
-          <div className="mt-8 flex flex-wrap gap-2">
             <a
-              href="https://univemanagement.eu.qualtrics.com/jfe/form/SV_eWBQbOif6xHKdSK"
+              href="/documents/events/20260210_icopebest_workshop.pdf"
               target="_blank"
               rel="noreferrer"
               className={quietBtn}
             >
-              Register (Qualtrics)
+              Download Flyer (PDF)
+            </a>
+            <a
+              href="/documents/events/20260210_workshop_agenda.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className={quietBtn}
+            >
+              Workshop Agenda (PDF)
             </a>
           </div>
         </Card>

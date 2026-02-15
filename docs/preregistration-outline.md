@@ -159,9 +159,9 @@ Participants are randomly assigned to one of four conditions:
 To ensure treatment exposure:
 
 1. **E2 Intro Page:** Text-only page displaying treatment information before interactive task
-2. **Minimum Display Time:** 5 seconds before "Next" button enables
-3. **Comprehension Check (MC_ID_CHECK):** Forced-correct question verifying participant understood advisor identity
-4. **Logging:** E2_INTRO_TIME recorded for sensitivity analyses
+2. **Minimum Display Time:** 5 seconds before "Next" button enables (logged as E2_GATEATT for attention gate, E2_GATEPA for proceed action, E2_GATE_MS for gate duration in milliseconds)
+3. **Comprehension Check (MC_IDCHK):** Non-binding comprehension check question verifying participant understood advisor identity. This is a selection-required gate (participant must select an option to proceed) but is NOT forced-correct. Correctness is recorded separately in MC_IDCORR (0/1).
+4. **Logging:** Additional timing variables recorded for sensitivity analyses
 
 ### 3.2 E1: Access Policy (2-Arm)
 
@@ -399,7 +399,7 @@ Confirmatory analyses will **exclude** participants meeting any of the following
 | Criterion | Variable | Condition | Rationale |
 |-----------|----------|-----------|-----------|
 | Incomplete response | — | Survey not finished | Missing primary DV |
-| Failed quality check | RA_QUAL | RA_QUAL = 0 | No slider movement, <5s on task, or >60s to first move |
+| Failed quality check | RA_QUALS | RA_QUALS = 0 | No slider movement, <5s on task, or >60s to first move |
 | Failed attention check | ATTN_7 | ATTN_7 ≠ 7 | Inattentive responding |
 | Missing primary DV | RA_ADL1 | RA_ADL1 missing | Cannot test hypotheses |
 | Non-consent | CONSENT | CONSENT = 0 | Ethical requirement |
@@ -412,24 +412,39 @@ The following are **not** exclusion criteria:
 |----------|--------|
 | MC_ID_OP | Manipulation check—analyzed for sensitivity, not exclusion |
 | MC_DISCLAIM | Manipulation check—analyzed for sensitivity, not exclusion |
-| MC_ID_CHECK | Comprehension gate (forced correct)—all completers pass by design |
+| MC_IDCHK | Comprehension gate (selection required, not forced-correct)—analyzed for sensitivity via MC_IDCORR |
+| MC_IDCORR | Comprehension correctness indicator—analyzed for sensitivity, not exclusion |
 | BTN_SHOW | Treatment exposure indicator—analyzed for sensitivity, not exclusion |
 | FINLIT_CORRECT | Covariate—no basis for exclusion |
 
 ### 7.3 RA_QUAL Definition
 
+The JavaScript implementation exports three quality indicators:
+
+**RA_QUALL (Lenient):** Basic engagement check
 ```r
 # R implementation
-RA_QUAL <- ifelse(
+RA_QUALL <- ifelse(RA_MOVES >= 1, 1, 0)
+```
+
+**RA_QUALS (Strict):** Full quality gate - **THIS IS THE PREREGISTERED CONFIRMATORY EXCLUSION CRITERION**
+```r
+# R implementation
+RA_QUALS <- ifelse(
   RA_MOVES >= 1 &       # At least one slider movement
   RA_TPAGE >= 5000 &    # At least 5 seconds on task page
   RA_FMOVE <= 60000,    # First move within 60 seconds
   1, 0
 )
-
-# Equivalent in Stata:
-# gen RA_QUAL = (RA_MOVES >= 1 & RA_TPAGE >= 5000 & RA_FMOVE <= 60000)
 ```
+
+**RA_QUAL (Aggregate):** Three-level quality indicator (0 = fails both, 1 = passes lenient only, 2 = passes both)
+```r
+# R implementation
+RA_QUAL <- RA_QUALL + RA_QUALS
+```
+
+**For confirmatory analyses:** Exclude participants where **RA_QUALS = 0** (i.e., those failing the strict quality threshold matching the preregistered RA_MOVES ≥ 1, RA_TPAGE ≥ 5000ms, RA_FMOVE ≤ 60000ms criteria).
 
 ### 7.4 Expected Exclusion Rates
 
@@ -438,7 +453,7 @@ Based on pilot studies and Prolific quality benchmarks:
 | Criterion | Expected Rate |
 |-----------|---------------|
 | Incomplete | 2–5% |
-| RA_QUAL = 0 | 3–5% |
+| RA_QUALS = 0 | 3–5% |
 | ATTN_7 ≠ 7 | 5–10% |
 | **Total (overlapping)** | **8–15%** |
 
@@ -553,6 +568,7 @@ Repeat primary analyses on subsamples:
 | Per-protocol (AI_ID) | MC_ID_OP matches assigned AI_ID |
 | Per-protocol (AI_DIS) | MC_DISCLAIM matches assigned AI_DIS |
 | Per-protocol (both) | Both manipulation checks correct |
+| Comprehension correct | MC_IDCORR = 1 (correct comprehension gate response) |
 
 #### Treatment Exposure Sensitivity
 
@@ -560,7 +576,7 @@ Repeat primary analyses on subsamples:
 |-----------|-----------|
 | Viewed suggestion | BTN_SHOW = 1 |
 | Applied suggestion | BTN_APPLY = 1 |
-| Extended intro exposure | E2_INTRO_TIME ≥ 8000 (8 seconds) |
+| Extended gate exposure | E2_GATE_MS ≥ 8000 (8 seconds on gate) |
 
 ### 9.2 Alternative DV Specifications
 
@@ -594,7 +610,7 @@ Exploratory subgroup analyses (no FDR correction):
 
 1. **Attrition rates by condition:** χ² test for differential dropout
 2. **Balance on covariates:** F-tests or t-tests for treatment group differences on demographics and covariates
-3. **Response quality by condition:** Compare RA_QUAL=0 rates across conditions
+3. **Response quality by condition:** Compare RA_QUALS=0 rates across conditions
 
 ---
 
@@ -617,7 +633,7 @@ Exploratory subgroup analyses (no FDR correction):
 1. Collect N=20–30 responses
 2. Check:
    - Completion time distribution (target: 14–20 minutes)
-   - RA_QUAL pass rate (target: >90%)
+   - RA_QUALS pass rate (target: >90%)
    - ATTN_7 pass rate (target: >90%)
    - JavaScript app functioning (no missing RA_* variables)
    - Balance across conditions
@@ -647,8 +663,8 @@ Exploratory subgroup analyses (no FDR correction):
 | Original | Revised | Reason |
 |----------|---------|--------|
 | RA_MINTIME = 2000ms | RA_MINTIME = 5000ms | Stricter quality threshold |
-| No comprehension check | MC_ID_CHECK added | Ensure treatment exposure |
-| No intro page timing | E2_INTRO_TIME logged | Exposure sensitivity analysis |
+| No comprehension check | MC_IDCHK added | Ensure treatment exposure |
+| No gate timing | E2_GATEATT, E2_GATEPA, E2_GATE_MS logged | Exposure sensitivity analysis |
 | No FDR correction specified | BH FDR correction for H1, H2, H5 | Multiple testing control |
 | H4 confirmatory | H4 exploratory | Underpowered for interaction |
 | WTP_HUM 0–50€ | WTP_HUM 0–100€ | Avoid ceiling effects |
@@ -658,21 +674,98 @@ Exploratory subgroup analyses (no FDR correction):
 
 ## Appendix B: Variable Codebook Summary
 
+### Core Treatment and Outcome Variables
+
 | Variable | Type | Range | Description |
 |----------|------|-------|-------------|
 | AI_ID | Binary | 0, 1 | Advisor identity treatment |
 | AI_DIS | Binary | 0, 1 | Disclaimer treatment |
 | E1_EQUAL_ACCESS | Binary | 0, 1 | Access policy treatment |
-| RA_ADL1 | Continuous | 0–200 | Primary E2 DV: L1 adherence |
-| FALI | Continuous | ~-3 to +3 | Primary E1 DV: Fairness index |
+| RA_ADL1 | Continuous | 0–200 | Primary E2 DV: L1 adherence distance |
+| FALI | Continuous | ~-3 to +3 | Primary E1 DV: Fairness index (z-scored) |
 | CONFL_AI | Continuous | 0–10 | Perceived conflict of interest |
-| RA_QUAL | Binary | 0, 1 | Task quality indicator |
-| ATTN_7 | Continuous | 0–10 | Attention check response |
+
+### Quality and Attention Variables
+
+| Variable | Type | Range | Description |
+|----------|------|-------|-------------|
+| RA_QUALL | Binary | 0, 1 | Lenient quality check (≥1 move) |
+| RA_QUALS | Binary | 0, 1 | **Strict quality check (confirmatory exclusion criterion)** |
+| RA_QUAL | Ordinal | 0, 1, 2 | Aggregate quality (0=fails both, 1=lenient only, 2=both) |
+| ATTN_7 | Continuous | 0–10 | Attention check response (correct=7) |
+
+### Manipulation and Comprehension Checks
+
+| Variable | Type | Range | Description |
+|----------|------|-------|-------------|
 | MC_ID_OP | Categorical | 1, 2, 3 | Post-task manipulation check (identity) |
 | MC_DISCLAIM | Categorical | 0, 1, 2 | Post-task manipulation check (disclaimer) |
-| MC_ID_CHECK | Categorical | 1, 2, 3 | Intro comprehension check (forced correct) |
-| BTN_SHOW | Binary | 0, 1 | Viewed suggestion box |
-| E2_INTRO_TIME | Continuous | ≥0 | Time on intro page (ms) |
+| MC_IDCHK | Categorical | 1, 2, 3 | Intro comprehension gate (selection required, not forced-correct) |
+| MC_IDCORR | Binary | 0, 1 | Comprehension gate correctness indicator |
+
+### Task Engagement and Exposure Variables
+
+| Variable | Type | Range | Description |
+|----------|------|-------|-------------|
+| BTN_SHOW | Binary | 0, 1 | Whether participant viewed suggestion box |
+| BTN_APPLY | Binary | 0, 1 | Whether participant clicked "Apply Suggestion" |
+| E2_GATEATT | Binary | 0, 1 | Gate attention flag |
+| E2_GATEPA | Binary | 0, 1 | Gate proceed action flag |
+| E2_GATE_MS | Continuous | ≥0 | Gate duration in milliseconds |
+| RA_TPAGE | Continuous | ≥0 | Time on task page (ms) |
+| RA_MOVES | Integer | ≥0 | Number of slider movements |
+| RA_FMOVE | Continuous | ≥0 | Time to first slider movement (ms) |
+| WARN_SH | Binary | 0, 1 | Warning message shown flag |
+
+### Portfolio Allocation Variables
+
+| Variable | Type | Range | Description |
+|----------|------|-------|-------------|
+| RA_CASH | Continuous | 0–100 | Final cash allocation (%) |
+| RA_BOND | Continuous | 0–100 | Final bonds allocation (%) |
+| RA_EQ | Continuous | 0–100 | Final stocks/equities allocation (%) |
+
+### Simulation Output Variables
+
+| Variable | Type | Range | Description |
+|----------|------|-------|-------------|
+| SIM_RETURN_PCT | Continuous | Real | Simulated portfolio return (%) |
+| SIM_FINAL_VAL | Continuous | ≥0 | Simulated final portfolio value (€) |
+| SIM_BONUS_EURO | Continuous | ≥0 | Simulated bonus payment (€) |
+
+**Note on Embedded Data (ED) Key Length:** All ED variable names logged by the JavaScript implementation are ≤ 20 characters to comply with Qualtrics embedded data field name length constraints.
+
+---
+
+## Appendix B.1: Variable Name Mapping (Planned vs. Implemented)
+
+This section documents changes between initially planned variable names and the final implementation in `2026.02.15_qualtrics_interactive_portfolio_task_FINALv2.js`. These changes were made to comply with Qualtrics Embedded Data (ED) field name constraints (≤20 characters) and JavaScript naming conventions.
+
+### Variable Name Changes
+
+| Planned Name | Implemented Name | Change Reason |
+|--------------|------------------|---------------|
+| MC_ID_CHECK | MC_IDCHK | ED length constraint (≤20 chars) |
+| MC_ID_CORRECT | MC_IDCORR | ED length constraint |
+| E2_INTRO_TIME | E2_GATE_MS | More descriptive (gate timing in ms) |
+| — | E2_GATEATT | New: Gate attention flag |
+| — | E2_GATEPA | New: Gate proceed action flag |
+| SIM_RET | SIM_RETURN_PCT | More descriptive (return percentage) |
+| SIM_FIN | SIM_FINAL_VAL | More descriptive (final value) |
+| SIM_BON | SIM_BONUS_EURO | More descriptive (bonus in euros) |
+| WARN_SHOWN | WARN_SH | ED length constraint |
+| RA_QUAL (single) | RA_QUALL, RA_QUALS, RA_QUAL | Split into lenient/strict/aggregate |
+
+### Clarifications on Implementation
+
+1. **MC_IDCHK behavior:** Originally documented as "forced-correct" but implemented as "selection-required" (non-binding). Correctness is tracked separately via MC_IDCORR.
+
+2. **RA_QUAL structure:** The JavaScript exports three variants:
+   - `RA_QUALL` = lenient check (movement only)
+   - `RA_QUALS` = strict check (movement + timing thresholds) — **used for confirmatory exclusion**
+   - `RA_QUAL` = aggregate (0/1/2 scale)
+
+3. **Gate timing variables:** The JS logs three gate-related variables (E2_GATEATT, E2_GATEPA, E2_GATE_MS) instead of a single E2_INTRO_TIME, providing finer-grained exposure measurement.
 
 ---
 

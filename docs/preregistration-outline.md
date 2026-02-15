@@ -747,9 +747,7 @@ This section documents changes between initially planned variable names and the 
 |--------------|------------------|---------------|
 | MC_ID_CHECK | MC_IDCHK | ED length constraint (≤20 chars) |
 | MC_ID_CORRECT | MC_IDCORR | ED length constraint |
-| E2_INTRO_TIME | E2_GATE_MS | More descriptive (gate timing in ms) |
-| — | E2_GATEATT | New: Gate attention flag |
-| — | E2_GATEPA | New: Gate proceed action flag |
+| E2_INTRO_TIME | E2_GATE_MS + E2_GATEATT + E2_GATEPA | Restructured: single timing → three separate gate measurements |
 | SIM_RET | SIM_RETURN_PCT | More descriptive (return percentage) |
 | SIM_FIN | SIM_FINAL_VAL | More descriptive (final value) |
 | SIM_BON | SIM_BONUS_EURO | More descriptive (bonus in euros) |

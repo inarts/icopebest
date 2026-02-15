@@ -1,0 +1,456 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{natbib}
+
+\title{I.COPE.BEST Experiment 2\\
+\large Preregistration: AI Identity Disclosure and Trust}
+
+\author{
+Inga Jonaitytė, Ph.D.\\
+Ca' Foscari University of Venice\\
+Venice School of Management
+}
+
+\date{Version: Final (2026-02-15)\\
+Aligned with Qualtrics/JavaScript Implementation}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document preregisters Experiment 2 of the I.COPE.BEST research project, examining how AI identity disclosure and messaging framing affect user trust and financial allocation decisions. We specify our confirmatory hypotheses, sample definition, analysis plan, and multiplicity control procedures. This preregistration is registered via \textbf{OSF Registries → OSF Preregistration} and reflects the final implementation as deployed in Qualtrics with embedded JavaScript.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Study Information}
+
+\subsection{Research Question}
+Does the identity disclosure of an AI financial advisor and the messaging around that disclosure affect users' trust, engagement, and allocation decisions in a simulated financial advice context?
+
+\subsection{Registration Details}
+\begin{itemize}
+\item \textbf{Platform:} OSF Preregistration
+\item \textbf{Project:} I.COPE.BEST (SOE\_0000193)
+\item \textbf{PI:} Inga Jonaitytė, Ph.D.
+\item \textbf{Institution:} Ca' Foscari University of Venice – Venice School of Management
+\item \textbf{Implementation:} Qualtrics survey with embedded JavaScript interactive task
+\item \textbf{Dataset compliance:} All variable names match exported data structure
+\end{itemize}
+
+\subsection{Qualtrics Embedded Data Constraints}
+All variable names used in this study comply with Qualtrics Embedded Data (ED) field naming requirements: field names must not exceed 20 characters. This constraint guided our final variable naming convention (see Section~\ref{sec:variables}).
+
+\section{Variable Naming Convention}
+\label{sec:variables}
+
+\subsection{Implemented Variable Names}
+This preregistration uses the final implemented variable names that appear in the exported dataset. Table~\ref{tab:variables-main} lists the primary variables.
+
+\begin{table}[h]
+\centering
+\caption{Primary Variables in Experiment 2}
+\label{tab:variables-main}
+\begin{tabular}{lll}
+\toprule
+\textbf{Variable} & \textbf{Description} & \textbf{Values} \\
+\midrule
+T\_E2\_ID & AI identity disclosure & 0=No, 1=Yes \\
+T\_E2\_MSG & Disclosure messaging & 0=Neutral, 1=Positive, 2=Warning \\
+T\_E1\_ACCESS & E1 equal access (carryover) & 0=Unequal, 1=Equal \\
+RA\_ADL1 & Allocation to AI advisor & 0–100 (continuous) \\
+RA\_COMPLETE & Task completion flag & 0=No, 1=Yes \\
+Finished & Survey completion & 0=No, 1=Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Variable Name Mapping}
+For transparency, Table~\ref{tab:mapping} documents the evolution from initial planning names to final implemented names.
+
+\begin{table}[h]
+\centering
+\caption{Variable Name Mapping (Planned → Implemented)}
+\label{tab:mapping}
+\begin{tabular}{lll}
+\toprule
+\textbf{Planned} & \textbf{Implemented} & \textbf{Rationale} \\
+\midrule
+AI\_ID & T\_E2\_ID & Clearer treatment prefix; ED limit \\
+AI\_DIS & T\_E2\_MSG & More descriptive messaging indicator \\
+E1\_EQUAL\_ACCESS & T\_E1\_ACCESS & Shorter; consistent prefix; ED limit \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Note:} All subsequent sections use the implemented names (right column).
+
+\section{Experimental Design}
+
+\subsection{Treatment Structure}
+Experiment 2 employs a 2 × 3 between-subjects factorial design crossing two factors:
+
+\paragraph{Factor 1: AI Identity Disclosure (T\_E2\_ID)}
+\begin{itemize}
+\item 0 = No disclosure (control)
+\item 1 = Disclosure revealed
+\end{itemize}
+
+\paragraph{Factor 2: Disclosure Messaging (T\_E2\_MSG)}
+\begin{itemize}
+\item 0 = Neutral framing
+\item 1 = Positive framing (emphasizes AI benefits)
+\item 2 = Warning framing (emphasizes AI risks/limitations)
+\end{itemize}
+
+\paragraph{Carryover from Experiment 1:}
+Participants retain their Experiment 1 treatment assignment:
+\begin{itemize}
+\item \textbf{T\_E1\_ACCESS}: Equal (1) vs. Unequal (0) access to financial advice
+\end{itemize}
+
+\subsection{Exposure Guarantee and Gate Design}
+\label{sec:gate}
+
+\paragraph{Implementation Details:}
+An \textbf{overlay gate} is embedded directly inside the interactive JavaScript task (not a separate Qualtrics page).
+
+\paragraph{Gate Specifications:}
+\begin{itemize}
+\item \textbf{Minimum viewing time:} 3 seconds
+\item \textbf{Interaction requirement:} Participant must make a selection to proceed
+\item \textbf{Visual design:} Overlay that blocks task interaction until conditions are met
+\end{itemize}
+
+\paragraph{Logged Variables:}
+\begin{itemize}
+\item \textbf{E2\_GATEAT}: Timestamp when gate was first displayed
+\item \textbf{E2\_GATEPA}: Gate interaction/selection timestamp
+\item \textbf{E2\_GATEMS}: Total gate display duration (milliseconds)
+\item \textbf{MC\_IDCHK}: Multiple-choice ID comprehension check response
+\item \textbf{MC\_IDCORR}: Comprehension check correctness (1=correct, 0=incorrect)
+\item \textbf{E2\_EXPOSE\_ID}: Confirmed exposure to identity disclosure
+\item \textbf{E2\_EXPOSE\_MSG}: Confirmed exposure to messaging content
+\item \textbf{E2\_EXPOSE\_REC}: Exposure record/verification flag
+\end{itemize}
+
+\paragraph{Purpose:}
+These variables enable \textbf{exposure checks}, \textbf{comprehension validation}, and \textbf{attention monitoring} for sensitivity and per-protocol analyses only. They are \textbf{not used for confirmatory exclusions} (see Section~\ref{sec:exclusions}).
+
+\section{Data Integrity and Flow Control}
+
+\subsection{Fail-Safe Branching with RA\_COMPLETE}
+
+\paragraph{Branching Logic:}
+\begin{itemize}
+\item If \texttt{RA\_COMPLETE == 1} → Participant proceeds to survey completion
+\item If \texttt{RA\_COMPLETE != 1} → Survey terminates with fail-safe message
+\end{itemize}
+
+\paragraph{RA\_COMPLETE Definition:}
+\texttt{RA\_COMPLETE} is set to 1 at the commit moment when the ``Next'' button becomes enabled in the reallocation task. This indicates that the participant has made a valid allocation decision and committed it.
+
+\paragraph{Purpose:}
+\begin{itemize}
+\item Ensures only participants who complete the core experimental task reach survey end
+\item Prevents incomplete or invalid task data from entering the dataset
+\item Forms part of the confirmatory sample definition (Section~\ref{sec:sample})
+\end{itemize}
+
+\section{Sample Definition and Exclusions}
+
+\subsection{Confirmatory Sample Definition}
+\label{sec:sample}
+
+A participant is included in the \textbf{confirmatory sample} if and only if:
+\begin{equation}
+\text{Finished} = 1 \quad \text{AND} \quad \text{RA\_COMPLETE} = 1
+\end{equation}
+
+Where:
+\begin{itemize}
+\item \textbf{Finished = 1}: Qualtrics survey completion flag
+\item \textbf{RA\_COMPLETE = 1}: Valid reallocation task completion (as defined in Section~4.1)
+\end{itemize}
+
+\subsection{Primary Dependent Variable}
+The primary outcome for confirmatory hypothesis testing in Experiment 2 is:
+\begin{itemize}
+\item \textbf{RA\_ADL1}: Reallocation decision towards AI advisor (scaled 0–100, continuous)
+\end{itemize}
+
+\subsection{Confirmatory Exclusions}
+\label{sec:exclusions}
+
+\paragraph{No Confirmatory Exclusions Based On:}
+\begin{itemize}
+\item Quality flags: \texttt{RA\_QUAL}, \texttt{RA\_QUALS}, \texttt{RA\_QUALL}
+\item Attention check: \texttt{ATTN\_7}
+\item Exposure/comprehension variables: \texttt{E2\_EXPOSE\_ID}, \texttt{E2\_EXPOSE\_MSG}, \texttt{MC\_IDCHK}, \texttt{MC\_IDCORR}
+\end{itemize}
+
+\paragraph{Rationale:}
+These measures are reserved for \textbf{sensitivity} and \textbf{per-protocol} analyses only (see Section~\ref{sec:quality} and Section~\ref{sec:exploratory}). Confirmatory tests use the full sample as defined above.
+
+\section{Quality Flags (Sensitivity Use Only)}
+\label{sec:quality}
+
+\subsection{Quality Flag Variables}
+
+\paragraph{RA\_QUALS (Strict Quality Flag):}
+\begin{itemize}
+\item Applies strict quality criteria for reallocation task behavior
+\item 1 = Pass strict quality check
+\item 0 = Fail strict quality check
+\end{itemize}
+
+\paragraph{RA\_QUALL (Lenient Quality Flag):}
+\begin{itemize}
+\item Applies lenient quality criteria for reallocation task behavior
+\item 1 = Pass lenient quality check
+\item 0 = Fail lenient quality check
+\end{itemize}
+
+\paragraph{RA\_QUAL (3-Level Aggregate Quality Flag):}
+\begin{itemize}
+\item 2 = Strict pass (passes both strict and lenient criteria)
+\item 1 = Lenient-only pass (passes lenient but not strict)
+\item 0 = Fail (fails both lenient and strict criteria)
+\end{itemize}
+
+\subsection{ATTN\_7 (Attention Check)}
+Standard attention check item included in the post-task survey.
+\begin{itemize}
+\item Response coded as pass/fail
+\item \textbf{Not used for confirmatory exclusions}
+\end{itemize}
+
+\subsection{Usage of Quality Measures}
+All quality flags and attention checks are reserved for:
+\begin{itemize}
+\item \textbf{Sensitivity analyses:} Testing robustness of main results to different quality thresholds
+\item \textbf{Per-protocol analyses:} Examining treatment effects among high-quality respondents
+\item \textbf{Not for confirmatory hypothesis testing}
+\end{itemize}
+
+\section{Timing Parameters}
+
+\subsection{Task Timing Thresholds}
+The following timing parameters are enforced in the JavaScript task implementation:
+
+\begin{table}[h]
+\centering
+\caption{Timing Parameters}
+\label{tab:timing}
+\begin{tabular}{lll}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Description} \\
+\midrule
+RA\_MINTIME & 5000 ms & Minimum task engagement time \\
+RA\_MAXFIRST & 180000 ms & Max time for first interaction (3 min) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{RA\_MINTIME (5000 ms = 5 seconds):}
+Minimum time required for valid task engagement. Used in quality flag calculations.
+
+\paragraph{RA\_MAXFIRST (180000 ms = 180 seconds = 3 minutes):}
+Maximum time for first interaction or decision. Used in quality flag calculations to detect inattentive or distracted behavior.
+
+\subsection{Implementation}
+These timing parameters are captured by the JavaScript task logic and recorded in the dataset for quality assessment and sensitivity analyses.
+
+\section{Hypotheses and Analysis Plan}
+
+\subsection{Confirmatory Hypotheses}
+
+\paragraph{H1 (Main Effect of Identity Disclosure):}
+Participants assigned to \texttt{T\_E2\_ID = 1} (disclosure) will show different allocation behavior (\texttt{RA\_ADL1}) compared to \texttt{T\_E2\_ID = 0} (no disclosure).
+
+\paragraph{H2 (Main Effect of Messaging):}
+Participants will show different allocation behavior (\texttt{RA\_ADL1}) across \texttt{T\_E2\_MSG} levels (neutral vs. positive vs. warning framing).
+
+\paragraph{H5 (Interaction Effect):}
+The effect of \texttt{T\_E2\_ID} on \texttt{RA\_ADL1} will differ by \texttt{T\_E2\_MSG} level (\texttt{T\_E2\_ID} × \texttt{T\_E2\_MSG} interaction).
+
+\subsection{Statistical Model}
+
+\paragraph{Primary Model:}
+Linear regression (OLS) with \texttt{RA\_ADL1} as the dependent variable:
+\begin{equation}
+\text{RA\_ADL1} \sim \text{T\_E2\_ID} + \text{T\_E2\_MSG} + \text{T\_E2\_ID} \times \text{T\_E2\_MSG} + \mathbf{X}
+\end{equation}
+
+Where $\mathbf{X}$ includes potential control variables:
+\begin{itemize}
+\item \texttt{T\_E1\_ACCESS}: Experiment 1 treatment carryover
+\item Demographics: age, gender, education, financial literacy
+\item Prior trust measures from Experiment 1 (if available)
+\end{itemize}
+
+\subsection{Multiplicity Control}
+\label{sec:multiplicity}
+
+\paragraph{Family-Wise Error Rate (FWER) Control:}
+We apply the \textbf{Holm-Bonferroni sequential procedure} to control the family-wise error rate across our three confirmatory hypotheses.
+
+\begin{itemize}
+\item \textbf{Method:} Holm-Bonferroni
+\item \textbf{Family:} Three confirmatory tests (H1, H2, H5)
+\item \textbf{Alpha level:} $\alpha = 0.05$ (family-wise)
+\end{itemize}
+
+\paragraph{Procedure:}
+\begin{enumerate}
+\item Rank p-values: $p_1 \leq p_2 \leq p_3$
+\item Test sequentially:
+\begin{itemize}
+\item Compare $p_1$ to $\alpha/3$
+\item If $p_1 \leq \alpha/3$, compare $p_2$ to $\alpha/2$
+\item If $p_2 \leq \alpha/2$, compare $p_3$ to $\alpha/1$
+\end{itemize}
+\item Stop at first non-significant test
+\end{enumerate}
+
+\paragraph{Note:}
+The Holm-Bonferroni procedure controls FWER at level $\alpha$ while being uniformly more powerful than the Bonferroni correction. This is appropriate for confirmatory hypothesis testing in behavioral and experimental economics.
+
+\section{Secondary and Exploratory Analyses}
+\label{sec:exploratory}
+
+\subsection{Secondary Outcomes}
+Additional dependent variables may include:
+\begin{itemize}
+\item Trust measures (self-reported trust in AI advisor)
+\item Engagement metrics (interaction patterns, time spent)
+\item Confidence ratings (confidence in allocation decision)
+\item Follow-up decision measures
+\end{itemize}
+
+\subsection{Exploratory Analyses}
+\begin{itemize}
+\item Heterogeneous treatment effects by participant characteristics (e.g., demographics, prior experience)
+\item Mediation analyses (e.g., trust → allocation)
+\item Per-protocol analyses using quality flags (\texttt{RA\_QUAL} levels)
+\item Sensitivity analyses excluding low-attention respondents (\texttt{ATTN\_7}, exposure checks)
+\item Subgroup analyses by \texttt{T\_E1\_ACCESS} (carryover effects)
+\end{itemize}
+
+\subsection{Statistical Note}
+Secondary and exploratory analyses are not subject to the same FWER control as confirmatory tests. Results will be interpreted with appropriate caution regarding multiple comparisons. Where relevant, we may apply Benjamini-Hochberg False Discovery Rate (FDR) control for exploratory families, but this is not prespecified for confirmatory hypotheses.
+
+\section{Data Management}
+
+\subsection{Data Export}
+\begin{itemize}
+\item Qualtrics exports include all Embedded Data fields
+\item Variable names in exported data match this preregistration exactly
+\item Raw data retained with all quality, timing, and exposure variables
+\end{itemize}
+
+\subsection{Data Cleaning}
+\begin{itemize}
+\item Apply confirmatory sample definition: \texttt{Finished = 1 AND RA\_COMPLETE = 1}
+\item Retain excluded cases for sensitivity analyses
+\item Document all data transformations in analysis scripts
+\end{itemize}
+
+\subsection{Reproducibility}
+\begin{itemize}
+\item Analysis scripts will be version-controlled (e.g., Git)
+\item All analyses will be reproducible from raw exported Qualtrics data
+\item Quality flags, timing variables, and exposure measures preserved for transparency
+\end{itemize}
+
+\section{Ethics and Compliance}
+
+This study received ethical approval from the appropriate institutional review board. All participants provide informed consent. Data are handled in compliance with GDPR and relevant data protection regulations. No personally identifiable information is retained in the analysis dataset.
+
+\newpage
+
+\appendix
+
+\section{Complete Variable List}
+
+Table~\ref{tab:vars-complete} lists all primary variables used in Experiment 2.
+
+\begin{longtable}{lll}
+\caption{Complete Variable List for Experiment 2} \label{tab:vars-complete} \\
+\toprule
+\textbf{Variable} & \textbf{Description} & \textbf{Values/Type} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\toprule
+\textbf{Variable} & \textbf{Description} & \textbf{Values/Type} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\multicolumn{3}{l}{\textbf{Treatment Assignment}} \\
+T\_E2\_ID & Identity disclosure & 0=No, 1=Yes \\
+T\_E2\_MSG & Messaging frame & 0=Neutral, 1=Positive, 2=Warning \\
+T\_E1\_ACCESS & E1 equal access (carryover) & 0=Unequal, 1=Equal \\
+\\
+\multicolumn{3}{l}{\textbf{Task Completion}} \\
+RA\_COMPLETE & Task completion flag & 0=No, 1=Yes \\
+Finished & Survey completion & 0=No, 1=Yes \\
+\\
+\multicolumn{3}{l}{\textbf{Primary Outcome}} \\
+RA\_ADL1 & Allocation to AI advisor & 0–100 (continuous) \\
+\\
+\multicolumn{3}{l}{\textbf{Exposure and Comprehension}} \\
+E2\_GATEAT & Gate display timestamp & Timestamp \\
+E2\_GATEPA & Gate interaction timestamp & Timestamp \\
+E2\_GATEMS & Gate display duration & Milliseconds \\
+MC\_IDCHK & Comprehension check response & Categorical \\
+MC\_IDCORR & Comprehension correctness & 0=Incorrect, 1=Correct \\
+E2\_EXPOSE\_ID & ID exposure confirmation & Boolean/flag \\
+E2\_EXPOSE\_MSG & Message exposure confirmation & Boolean/flag \\
+E2\_EXPOSE\_REC & Exposure record & Boolean/flag \\
+\\
+\multicolumn{3}{l}{\textbf{Quality and Timing}} \\
+RA\_MINTIME & Minimum time threshold & 5000 ms (constant) \\
+RA\_MAXFIRST & Max first-interaction time & 180000 ms (constant) \\
+RA\_QUALS & Strict quality flag & 0=Fail, 1=Pass \\
+RA\_QUALL & Lenient quality flag & 0=Fail, 1=Pass \\
+RA\_QUAL & Aggregate quality flag & 0=Fail, 1=Lenient, 2=Strict \\
+ATTN\_7 & Attention check response & Pass/Fail \\
+\end{longtable}
+
+\section{Registration History}
+
+\begin{itemize}
+\item \textbf{Version:} Final
+\item \textbf{Date:} 2026-02-15
+\item \textbf{Status:} Aligned with Qualtrics/JavaScript FINALv2 implementation
+\item \textbf{Changes:} Variable names updated from planning phase to implementation phase (see Table~\ref{tab:mapping})
+\item \textbf{Previous versions:} Planning documents used \texttt{AI\_ID}, \texttt{AI\_DIS}, \texttt{E1\_EQUAL\_ACCESS}
+\end{itemize}
+
+\section{References and Resources}
+
+\subsection{Statistical Methods}
+\begin{itemize}
+\item Holm, S. (1979). A simple sequentially rejective multiple test procedure. \textit{Scandinavian Journal of Statistics}, 6(2), 65–70.
+\item Benjamini, Y., \& Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to multiple testing. \textit{Journal of the Royal Statistical Society: Series B}, 57(1), 289–300.
+\end{itemize}
+
+\subsection{Project Resources}
+\begin{itemize}
+\item Project website: \url{https://www.icopebest.eu}
+\item OSF Preregistration: [To be completed upon submission]
+\end{itemize}
+
+\end{document}
